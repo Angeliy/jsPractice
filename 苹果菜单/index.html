@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>苹果菜单案例</title>
+    <style>
+        div,
+        img {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+        }
+
+        img {
+            width: 80px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            let oDiv = document.getElementById('container');
+            let oImg = oDiv.getElementsByTagName('img');
+            // 利用三角函数
+            document.onmousemove = function(e) {               
+                for(let i =0;i<oImg.length;i++) {
+                    let x = oImg[i].offsetLeft + oImg[i].offsetWidth/2;
+                    let y = oImg[i].offsetTop + oImg[i].offsetHeight/2 + oDiv.offsetTop;     
+                    let a = e.clientX -x;
+                    let b = e.clientY - y;       
+                    let c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2)) 
+                    let scale = 1- c/300;
+                    if(scale < 0.5) {
+                        scale = 0.5;
+                    }
+                    oImg[i].style.width = scale * 128 + 'px';
+                    oImg[i].style.height = scale * 128 + 'px';              
+                }
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+    <div id="container">
+        <img src="./img/1.png" alt="">
+        <img src="./img/2.png" alt="">
+        <img src="./img/3.png" alt="">
+        <img src="./img/4.png" alt="">
+        <img src="./img/5.png" alt="">
+    </div>
+</body>
+
+</html>
